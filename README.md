@@ -11,4 +11,4 @@ aftet that you guys can open the project and go to change directory to "/modul-4
 
 type "npm start" on terminal.
 
-but guys you can also acces this URL ["My Project"](https://teal-mousse-79abe8.netlify.app/signup).
+but guys you can also acces this URL ["My Project"](https://teal-mousse-79abe8.netlify.app/)
