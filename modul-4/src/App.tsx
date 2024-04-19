@@ -6,21 +6,12 @@ import MultiStepForm from './Pages/signup'
 
 function App() {
   return (
-
     <BrowserRouter>
     <Routes>
-      <Route path='/home' element={<HomeComponent />} />
+      <Route path='/' element={<HomeComponent />} />
       <Route path='/signup' element={<MultiStepForm />} />
     </Routes>
     </BrowserRouter>
-    // <div>
-    //   < HomeComponent/>
-      
-    //     {/* <MultiStepRegistration /> */}
-      
-    // </div>
-
-    
   );
 }
 
