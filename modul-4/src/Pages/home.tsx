@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const HomeComponent = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setPass] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [pass, setPass] = useState<string>("");
 
-  function onChangeName(event: any) {
+  function onChangeEmail(event: any) {
     console.log(event.target.value);
-    setName(event.target.value);
+    setEmail(event.target.value);
   }
 
   function onChangePass(event: any) {
@@ -21,16 +21,39 @@ const HomeComponent = () => {
 
   const navigate = useNavigate()
 
+  const handleLogin = async () => {
+    const response = await fetch('https://library-crud-sample.vercel.app/api/user/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password: pass })
+    })
+
+    const result = await response.json()
+
+    try {
+      if (!response.ok) {
+        alert('Login failed')
+      }
+      else {
+        console.log('response success', result)
+        alert('Login success')
+        navigate('/dashboard')
+      }
+
+    } catch (error) {
+      alert(error)
+    }
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 w-96 border-solid border-2 border-grey-200">
         <h1 className="font-mono text-4xl mb-8 text-center my-5">My Florist</h1>
         <form className="flex flex-col mt-20">
           <input
-            type="text"
-            placeholder="User name..."
+            type="email"
+            placeholder="Email"
             className="border border-gray-300 p-2 mb-4 rounded-md"
-            onChange={onChangeName}
+            onChange={onChangeEmail}
           />
           <input
             type="password"
@@ -38,7 +61,9 @@ const HomeComponent = () => {
             className="border border-gray-300 p-2 mb-4 rounded-md"
             onChange={onChangePass}
           />
-          <button className="bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">
+          <button className="bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition-colors duration-300"
+            onClick={() => handleLogin()}
+          >
             Login
           </button>
         </form>
