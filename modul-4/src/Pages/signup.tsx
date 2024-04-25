@@ -64,11 +64,15 @@ const MultiStepForm = () => {
   const handleSubmit = async (values: { name: string, email: string, pass: string }) => {
     const response = await fetch('https://library-crud-sample.vercel.app/api/user/register', {
       method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         name: values.name, email: values.email, password: values.pass
       })
     })
 
+    console.log('response register', response)
     const result = await response.json()
 
     try {

@@ -24,6 +24,9 @@ const HomeComponent = () => {
   const handleLogin = async () => {
     const response = await fetch('https://library-crud-sample.vercel.app/api/user/login', {
       method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ email, password: pass })
     })
 
@@ -36,7 +39,7 @@ const HomeComponent = () => {
       else {
         console.log('response success', result)
         alert('Login success')
-        navigate('/dashboard')
+        // navigate('/dashboard')
       }
 
     } catch (error) {
@@ -63,6 +66,7 @@ const HomeComponent = () => {
           />
           <button className="bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition-colors duration-300"
             onClick={() => handleLogin()}
+            type="button"
           >
             Login
           </button>
