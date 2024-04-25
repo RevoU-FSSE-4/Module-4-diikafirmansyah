@@ -20,13 +20,14 @@ function Dashboard() {
     const getCategories = async () => {
         const response = await fetch('https://library-crud-sample.vercel.app/api/category', {
             method: 'GET',
+            mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                'Authorization': `${localStorage.getItem('token')}`,
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
         })
         // const result = await response.json()
-        console.log('response categories', response)
+        console.log('response categories', await response)
     }
 
     useEffect(() => {
