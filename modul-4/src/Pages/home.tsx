@@ -39,7 +39,8 @@ const HomeComponent = () => {
       else {
         console.log('response success', result)
         alert('Login success')
-        // navigate('/dashboard')
+        localStorage.setItem('token', result.token)
+        navigate('/dashboard')
       }
 
     } catch (error) {
